@@ -56,7 +56,7 @@ const update_data=async(req,res)=>{
 const delete_data=async(req,res)=>{
   let movieId=req.params.id;
 
- await movieModel.deleteOne({_id:movieId});
+  await movieModel.deleteOne({_id:movieId});
   res.status(200).json({status:1,message:"Enquiry deleted successfully"})
 }
 
