@@ -48,16 +48,16 @@ const top_movies=async(req,res)=>{
 const update_data=async(req,res)=>{
   let movieId=req.params.id;
 
-  let updateRes=await movieModel.updateOne({_id:movieId}); //updatelogic
-  res.status(200).json({status:1,message:"Enquiry updated successfully",updateRes})
+  await movieModel.updateOne({_id:movieId},{$set:req.body}); //updatelogic
+  res.status(200).json({status:1,message:"Enquiry updated successfully"})
 }
 
 //delete data use
 const delete_data=async(req,res)=>{
   let movieId=req.params.id;
 
-  let deletedMovie=await movieModel.deleteOne({_id:movieId});
-  res.status(200).json({status:1,message:"Enquiry deleted successfully",id:movieId,delRes:deletedMovie})
+ await movieModel.deleteOne({_id:movieId});
+  res.status(200).json({status:1,message:"Enquiry deleted successfully"})
 }
 
 module.exports = {postData,top_movies,update_data,delete_data};
