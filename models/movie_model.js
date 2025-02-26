@@ -19,6 +19,6 @@ const movieRatingschema=mongoose.Schema(
     }
 )
 
-const movieModel=mongoose.model("data",movieRatingschema);
+const movieModel=mongoose.model("movieData",movieRatingschema);
 
 module.exports=movieModel;
