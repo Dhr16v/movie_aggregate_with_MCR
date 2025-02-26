@@ -1,17 +1,16 @@
 const movieModel = require("../models/movie_model");
-const data = require("../data.json");
 const mongoose = require("mongoose");
 
 
 //Post function apply
 const postData = async (req, res) => {
-        const count=await movieModel.countDocuments();
+        // const count=await movieModel.countDocuments();
 
-        //if count is 0 then include the data ohter wise not stored
-        if(count===0)
-        {
-            await movieModel.insertMany(data);
-        }
+        // // //if count is 0 then include the data ohter wise not stored
+        // // if(count===0)
+        // // {
+        // //     await movieModel.insertMany(data);
+        // // }
 
 
         //Fetch the req.body data in the document and fetch
@@ -30,15 +29,18 @@ const postData = async (req, res) => {
           rating,
           genre
         })
+
+        movieModel.insertMany(movie);
+        
       
         //Save the data in mongodb
-        movie.save().then(() => {
-          res.status(201).json({ status: 1, message: "Data saved successfully",data:movie });
-        })
-        .catch((err) => {
-          console.error("Error while saving enquiry:", err);
-          res.status(500).json({ status: 0, message: "Error while saving data", error: err.message });
-        });
+        // movie.save().then(() => {
+        //   res.status(201).json({ status: 1, message: "Data saved successfully",data:movie });
+        // })
+        // .catch((err) => {
+        //   console.error("Error while saving enquiry:", err);
+        //   res.status(500).json({ status: 0, message: "Error while saving data", error: err.message });
+        // });
 
 };
 
