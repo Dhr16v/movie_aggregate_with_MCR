@@ -1,55 +1,31 @@
 const movieModel = require("../models/movie_model");
 const mongoose = require("mongoose");
 
-
-//Post function apply
 const postData = async (req, res) => {
-        // const count=await movieModel.countDocuments();
-
-        // // //if count is 0 then include the data ohter wise not stored
-        // // if(count===0)
-        // // {
-        // //     await movieModel.insertMany(data);
-        // // }
-
-
-        //Fetch the req.body data in the document and fetch
-        let {title,rating,genre}=req.body;
-
-        //If any field are miss then this error provides
-        if(!title || !rating || !genre)
-        {
-            res.status(501).json({status:0,message:"All fields are requird to fill the all details not add the data"});
-        }
-  
-
-        //Insert the model in movie create object insert the data
-        let movie=new movieModel({
-          title,
-          rating,
-          genre
-        })
-
-        movieModel.insertMany(movie);
-        
+  try {  
+      const data=await movieModel.insertMany(req.body);
       
-        //Save the data in mongodb
-        // movie.save().then(() => {
-        //   res.status(201).json({ status: 1, message: "Data saved successfully",data:movie });
-        // })
-        // .catch((err) => {
-        //   console.error("Error while saving enquiry:", err);
-        //   res.status(500).json({ status: 0, message: "Error while saving data", error: err.message });
-        // });
-
+      res.status(201).json({
+          status: 1,
+          message: "Data saved successfully in mongodb",
+          data: data,
+      });
+  }
+   catch (err) {
+      console.error("Error while saving data:", err);
+      res.status(500).json({
+          status: 0,
+          message: "Error while saving data",
+          error: err.message,
+      });
+  }
 };
+
 
 //Get function
 const top_movies=async(req,res)=>{
     let genre=req.query.genre;
-    // console.log(genre);
-
-    //If genre is not avable then message is provie
+  
      if(!genre)
      {
         res.status(501).json({status:0,message:"genre is required data and fill up"})
@@ -68,4 +44,20 @@ const top_movies=async(req,res)=>{
    
 }
 
-module.exports = {postData,top_movies};
+//update data use
+const update_data=async(req,res)=>{
+  let movieId=req.params.id;
+
+  let updateRes=await movieModel.updateOne({_id:movieId}); //updatelogic
+  res.status(200).json({status:1,message:"Enquiry updated successfully",updateRes})
+}
+
+//delete data use
+const delete_data=async(req,res)=>{
+  let movieId=req.params.id;
+
+  let deletedMovie=await movieModel.deleteOne({_id:movieId});
+  res.status(200).json({status:1,message:"Enquiry deleted successfully",id:movieId,delRes:deletedMovie})
+}
+
+module.exports = {postData,top_movies,update_data,delete_data};

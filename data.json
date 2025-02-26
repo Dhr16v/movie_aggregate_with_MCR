@@ -1,0 +1,63 @@
+[
+    {
+      "title": "Inception",
+      "rating": 8.8,
+      "genre": "Sci-Fi"
+      
+    },
+    {
+      "title": "The Dark Knight",
+      "rating": 9.0,
+      "genre": "Action"
+      
+    },
+    {
+      "title": "Interstellar",
+      "rating": 8.6,
+      "genre": "Sci-Fi"
+      
+    },
+    {
+      "title": "The Shawshank Redemption",
+      "rating": 9.3,
+      "genre": "Drama"
+      
+    },
+    {
+      "title": "Fight Club",
+      "rating": 8.8,
+      "genre": "Drama"
+      
+    },
+    {
+      "title": "Forrest Gump",
+      "rating": 8.8,
+      "genre": "Drama"
+    
+    },
+    {
+      "title": "The Matrix",
+      "rating": 8.7,
+      "genre": "Sci-Fi"
+      
+    },
+    {
+      "title": "The Godfather",
+      "rating": 9.2,
+      "genre": "Crime"
+      
+    },
+    {
+      "title": "Pulp Fiction",
+      "rating": 8.9,
+      "genre": "Crime"
+      
+    },
+    {
+      "title": "The Lord of the Rings: The Return of the King",
+      "rating": 9.0,
+      "genre": "Fantasy"
+      
+    }
+  ]
+  
